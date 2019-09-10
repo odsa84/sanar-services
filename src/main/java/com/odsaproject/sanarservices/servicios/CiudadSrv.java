@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import com.odsaproject.sanarservices.dao.CiudadDao;
 import com.odsaproject.sanarservices.entidades.Ciudad;
-import com.odsaproject.sanarservices.entidades.Provincia;
 
 /**
  * @author Osvaldo
@@ -22,14 +21,11 @@ import com.odsaproject.sanarservices.entidades.Provincia;
 public class CiudadSrv {
 
 	@Autowired
-	private CiudadDao ciudadDao;
-	
-	@Autowired
-	private ProvinciaSrv provinciaSrv;
+	private CiudadDao ciudadDao;	
 	
 	public List<Ciudad> devolverTodo() {
 		List<Ciudad> result = new ArrayList<>();
-		result = (List<Ciudad>) ciudadDao.findAll();
+		result = (List<Ciudad>) ciudadDao.findByEstadoTrue();
 
 		return result;
 	}
@@ -42,21 +38,19 @@ public class CiudadSrv {
 	}
 	
 	public Optional<Ciudad> devolverPorId(Long id) {
-		return ciudadDao.findById(id);
+		return ciudadDao.findCiuById(id);
 
 	}
 	
 	public List<Ciudad> devolverPorIdProvincia(Long idProvincia) {
 		List<Ciudad> result = new ArrayList<>();
-		Optional<Provincia> provincia = provinciaSrv.devolverPorId(idProvincia);
-		if(provincia.isPresent())
-			result = (List<Ciudad>) ciudadDao.findByProvincia(provincia.get());
+		result = (List<Ciudad>) ciudadDao.findByProvincia(idProvincia);
 
 		return result;
 	}
 	
 	public Optional<Ciudad> devolverPorNombre(String nombre) {
-		Optional<Ciudad> result = ciudadDao.findByNombre(nombre);
+		Optional<Ciudad> result = ciudadDao.findCiuByNombre(nombre);
 		
 		return result;
 	}

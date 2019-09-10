@@ -22,12 +22,14 @@ public class Ciudad {
 	private Long id;
 	private String nombre;
 	private Provincia provincia;
+	private int estado;
 	
 	public Ciudad() {
 	}
 	
-	public Ciudad(String nombre) {
+	public Ciudad(String nombre, int estado) {
 		this.nombre = nombre;
+		this.estado = estado;
 	}
 
 
@@ -60,6 +62,14 @@ public class Ciudad {
 
 	public void setProvincia(Provincia provincia) {
 		this.provincia = provincia;
+	}
+
+	public int getEstado() {
+		return estado;
+	}
+
+	public void setEstado(int estado) {
+		this.estado = estado;
 	}
 
 }

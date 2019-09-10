@@ -7,9 +7,10 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import com.odsaproject.sanarservices.entidades.Ciudad;
-import com.odsaproject.sanarservices.entidades.Provincia;
 
 /**
  * @author Osvaldo
@@ -17,10 +18,15 @@ import com.odsaproject.sanarservices.entidades.Provincia;
  */
 public interface CiudadDao extends JpaRepository<Ciudad, Long> {
 
-//	@Query("FROM Ciudad WHERE Provincia.id = :idProvincia")
-//	public List<Ciudad> findByIdProvincia(@Param("idProvincia") Long idProvincia);
+	@Query("SELECT c FROM Ciudad c WHERE c.estado = 1")
+	List<Ciudad> findByEstadoTrue();
 	
-	public List<Ciudad> findByProvincia(Provincia provincia);
+	@Query("SELECT c FROM Ciudad c WHERE c.id = :id AND c.estado = 1")
+	public Optional<Ciudad> findCiuById(@Param("id") long id);
 	
-	public Optional<Ciudad> findByNombre(String nombre);
+	@Query("SELECT c FROM Ciudad c WHERE c.provincia.id = :id AND c.estado = 1")
+	public List<Ciudad> findByProvincia(@Param("id") long id);
+	
+	@Query("SELECT c FROM Ciudad c WHERE c.nombre = :nombre AND c.estado = 1")
+	public Optional<Ciudad> findCiuByNombre(@Param("nombre") String nombre);
 }

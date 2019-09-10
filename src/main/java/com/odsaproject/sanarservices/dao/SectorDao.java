@@ -7,8 +7,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
-import com.odsaproject.sanarservices.entidades.Ciudad;
 import com.odsaproject.sanarservices.entidades.Sector;
 
 /**
@@ -17,9 +18,16 @@ import com.odsaproject.sanarservices.entidades.Sector;
  */
 public interface SectorDao extends JpaRepository<Sector, Long> {
 
-//	@Query("FROM Sector WHERE Ciudad.id = :idCiudad")
-//	public List<Sector> findByIdCiudad(@Param("idCiudad") Long idCiudad);
-	public List<Sector> findByCiudad(Ciudad ciudad);
+
+	@Query("SELECT s FROM Sector s WHERE s.estado = 1")
+	List<Sector> findByEstadoTrue();
 	
-	public Optional<Sector> findByNombre(String nombre);
+	@Query("SELECT s FROM Sector s WHERE s.id = :id AND s.estado = 1")
+	public Optional<Sector> findSecById(@Param("id") long id);
+	
+	@Query("SELECT s FROM Sector s WHERE s.ciudad.id = :id AND s.estado = 1")
+	public List<Sector> findByCiudad(@Param("id") long id);
+	
+	@Query("SELECT s FROM Sector s WHERE s.nombre = :nombre AND s.estado = 1")
+	public Optional<Sector> findSecByNombre(String nombre);
 }

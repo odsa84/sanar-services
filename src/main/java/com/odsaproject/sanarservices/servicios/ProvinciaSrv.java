@@ -25,7 +25,7 @@ public class ProvinciaSrv {
 	
 	public List<Provincia> devolverTodo() {
 		List<Provincia> result = new ArrayList<>();
-		result = (List<Provincia>) provinciaDao.findAll();
+		result = (List<Provincia>) provinciaDao.findByEstadoTrue();
 
 		return result;
 	}
@@ -38,12 +38,12 @@ public class ProvinciaSrv {
 	}
 	
 	public Optional<Provincia> devolverPorId(Long id) {
-		return provinciaDao.findById(id);
+		return provinciaDao.findProvById(id);
 
 	}
 	
 	public Optional<Provincia> devolverPorNombre(String nombre) {
-		Optional<Provincia> result = provinciaDao.findByNombre(nombre);
+		Optional<Provincia> result = provinciaDao.findProvByNombre(nombre);
 		
 		return result;
 	}

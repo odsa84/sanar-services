@@ -26,7 +26,6 @@ import com.odsaproject.sanarservices.servicios.CiudadSrv;
  *
  */
 @RestController
-//@CrossOrigin(origins = {"http://localhost:8100", "http://localhost:8101"})
 @CrossOrigin(origins = "*")
 @RequestMapping(value="/api/v1/ciudad", produces = "application/json")
 public class CiudadCtrl {

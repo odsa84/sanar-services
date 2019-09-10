@@ -28,7 +28,6 @@ import com.odsaproject.sanarservices.servicios.ServicioSrv;
  *
  */
 @RestController
-//@CrossOrigin(origins = {"http://localhost:8100", "http://localhost:8101"})
 @CrossOrigin(origins = "*")
 @RequestMapping(value="/api/v1/servicio", produces = "application/json")
 public class ServicioCtrl {

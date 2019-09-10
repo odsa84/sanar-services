@@ -18,13 +18,15 @@ public class Provincia {
 
 	private Long id;
 	private String nombre;
+	private int estado;
 	
 	public Provincia() {
 		
 	}
 	
-	public Provincia(String nombre) {
+	public Provincia(String nombre, int estado) {
 		this.nombre = nombre;
+		this.estado = estado;
 	}
 
 	@Id
@@ -45,5 +47,13 @@ public class Provincia {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+
+	public int getEstado() {
+		return estado;
+	}
+
+	public void setEstado(int estado) {
+		this.estado = estado;
 	}
 }

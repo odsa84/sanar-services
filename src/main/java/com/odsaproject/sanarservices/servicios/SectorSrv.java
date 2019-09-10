@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.odsaproject.sanarservices.dao.SectorDao;
-import com.odsaproject.sanarservices.entidades.Ciudad;
 import com.odsaproject.sanarservices.entidades.Sector;
 
 /**
@@ -23,12 +22,10 @@ public class SectorSrv {
 	
 	@Autowired
 	private SectorDao sectorDao;
-	@Autowired
-	private CiudadSrv ciudadSrv;
 	
 	public List<Sector> devolverTodo() {
 		List<Sector> result = new ArrayList<>();
-		result = (List<Sector>) sectorDao.findAll();
+		result = (List<Sector>) sectorDao.findByEstadoTrue();
 
 		return result;
 	}
@@ -41,21 +38,19 @@ public class SectorSrv {
 	}
 	
 	public Optional<Sector> devolverPorId(Long id) {
-		 return sectorDao.findById(id);
+		 return sectorDao.findSecById(id);
 
 	}
 	
 	public List<Sector> devolverPorIdCiudad(Long idCiudad) {
 		List<Sector> result = new ArrayList<>();
-		Optional<Ciudad> ciudad = ciudadSrv.devolverPorId(idCiudad);
-		if(ciudad.isPresent())
-			result = (List<Sector>) sectorDao.findByCiudad(ciudad.get());
+		result = (List<Sector>) sectorDao.findByCiudad(idCiudad);
 
 		return result;
 	}
 	
 	public Optional<Sector> devolverPorNombre(String nombre) {
-		Optional<Sector> result = sectorDao.findByNombre(nombre);
+		Optional<Sector> result = sectorDao.findSecByNombre(nombre);
 		
 		return result;		
 	}

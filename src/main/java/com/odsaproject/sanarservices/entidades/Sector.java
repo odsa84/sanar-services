@@ -21,13 +21,15 @@ public class Sector {
 	private Long id;
 	private String nombre;
 	private Ciudad ciudad;
+	private int estado;
 	
 	public Sector() {
 
 	}
 	
-	public Sector(String nombre) {
+	public Sector(String nombre, int estado) {
 		this.nombre = nombre;
+		this.estado = estado;
 	}
 
 	@Id
@@ -58,5 +60,13 @@ public class Sector {
 
 	public void setCiudad(Ciudad ciudad) {
 		this.ciudad = ciudad;
+	}
+
+	public int getEstado() {
+		return estado;
+	}
+
+	public void setEstado(int estado) {
+		this.estado = estado;
 	}
 }
