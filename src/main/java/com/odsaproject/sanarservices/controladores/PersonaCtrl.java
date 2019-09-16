@@ -50,6 +50,7 @@ public class PersonaCtrl {
 	public ResponseEntity crear(@RequestBody Persona persona) {
 		String passEncp = Encriptar.EncriptarMD5(persona.getPassword());
 		persona.setPassword(passEncp);
+		persona.setEstado(1);
 		
 		return ResponseEntity.ok(personaSrv.crear(persona));
 	}

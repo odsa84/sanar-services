@@ -24,13 +24,13 @@ public class Persona {
 	private String email;
 	private String telefono;
 	private String password;
-	private String estado; 
+	private int estado; 
 	
 	public Persona() {
 		
 	}
 
-	public Persona(String nombre, String apellido, String cedula, String email, String telefono, String estado) {
+	public Persona(String nombre, String apellido, String cedula, String email, String telefono, int estado) {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.cedula = cedula;
@@ -103,11 +103,11 @@ public class Persona {
 		this.password = password;
 	}
 
-	public String getEstado() {
+	public int getEstado() {
 		return estado;
 	}
 
-	public void setEstado(String estado) {
+	public void setEstado(int estado) {
 		this.estado = estado;
 	}
 

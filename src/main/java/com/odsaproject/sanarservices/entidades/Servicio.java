@@ -34,14 +34,14 @@ public class Servicio {
 	private Categoria categoria;
 	private Sector sector;
 	private String imagen;
-	private String estado;
+	private int estado;
 
 	public Servicio() {
 
 	}
 
 	public Servicio(String nombre, String descripcion, String callePrincipal, String numeracion, String calleSecundaria,
-			String detalleAdicional, LocalDate fechaCreadoNegocio, LocalDateTime fechaRegistro, String imagen, String estado) {
+			String detalleAdicional, LocalDate fechaCreadoNegocio, LocalDateTime fechaRegistro, String imagen, int estado) {
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.callePrincipal = callePrincipal;
@@ -175,11 +175,11 @@ public class Servicio {
 		this.imagen = imagen;
 	}
 
-	public String getEstado() {
+	public int getEstado() {
 		return estado;
 	}
 
-	public void setEstado(String estado) {
+	public void setEstado(int estado) {
 		this.estado = estado;
 	}
 

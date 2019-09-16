@@ -20,13 +20,13 @@ public class Categoria {
 	private String tipoNegocio;
 	private String descripcion;
 	private String imagen;
-	private String estado;
+	private int estado;
 	
 	public Categoria() {
 		
 	}
 
-	public Categoria(String tipoNegocio, String descripcion, String imagen, String estado) {
+	public Categoria(String tipoNegocio, String descripcion, String imagen, int estado) {
 		this.tipoNegocio = tipoNegocio;
 		this.descripcion = descripcion;
 		this.imagen = imagen;
@@ -70,11 +70,11 @@ public class Categoria {
 		this.imagen = imagen;
 	}
 
-	public String getEstado() {
+	public int getEstado() {
 		return estado;
 	}
 
-	public void setEstado(String estado) {
+	public void setEstado(int estado) {
 		this.estado = estado;
 	}
 
