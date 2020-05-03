@@ -1,1 +1,0 @@
-web: java -DServer.port=$PORT $JAVA_OPTS -war target/sanar-services.war
