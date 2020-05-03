@@ -4,6 +4,7 @@
 package com.odsaproject.sanarservices.controladores;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,7 +20,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.odsaproject.sanarservices.entidades.Categoria;
 import com.odsaproject.sanarservices.entidades.Servicio;
+import com.odsaproject.sanarservices.servicios.CategoriaSrv;
 import com.odsaproject.sanarservices.servicios.ServicioSrv;
 
 
@@ -36,6 +39,8 @@ public class ServicioCtrl {
 	
 	@Autowired
 	private ServicioSrv servicioSrv;
+	@Autowired
+	private CategoriaSrv categoriaSrv;
 	
 	@RequestMapping
 	public List<Servicio> listarTodo() {
@@ -48,6 +53,29 @@ public class ServicioCtrl {
 	@PostMapping("/crear")
 	public ResponseEntity crear(@RequestBody Servicio servicio) {
 		servicio.setFechaRegistro(LocalDateTime.now());
+		if(servicio.getImagen() == null || servicio.getImagen().isEmpty()) {
+			servicio.setImagen(servicio.getCategoria().getImagen());
+		}
+		return ResponseEntity.ok(servicioSrv.crear(servicio));
+	}
+	
+	@SuppressWarnings("rawtypes")
+	@PostMapping("/modificar")
+	public ResponseEntity modificar(@RequestBody Servicio servicio) {
+		Optional<Servicio> result = servicioSrv.devolverPorId(servicio.getId());
+		if(result.isPresent())
+			servicio.setFechaRegistro(result.get().getFechaRegistro());
+		else
+			servicio.setFechaRegistro(LocalDateTime.now());
+		
+		servicio.setFechaModificacion(LocalDateTime.now());
+		
+		if(servicio.getImagen() == null || servicio.getImagen().isEmpty()) {
+			Optional<Categoria> cat = categoriaSrv.devolverPorId(servicio.getCategoria().getId());
+			if(cat.isPresent())
+				servicio.setImagen(cat.get().getImagen());
+		}
+		
 		return ResponseEntity.ok(servicioSrv.crear(servicio));
 	}
 	

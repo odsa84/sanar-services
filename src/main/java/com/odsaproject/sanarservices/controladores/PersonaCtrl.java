@@ -28,7 +28,6 @@ import com.odsaproject.sanarservices.util.Encriptar;
  *
  */
 @RestController
-//@CrossOrigin(origins = {"http://localhost:8100", "http://localhost:8101"})
 @CrossOrigin(origins = "*")
 @RequestMapping(value="/api/v1/persona", produces = "application/json")
 public class PersonaCtrl {

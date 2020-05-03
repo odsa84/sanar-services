@@ -3,8 +3,8 @@
  */
 package com.odsaproject.sanarservices.entidades;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,12 +24,14 @@ public class Servicio {
 	private Long id;
 	private String nombre;
 	private String descripcion;
+	private String sitioWeb;
 	private String callePrincipal;
 	private String numeracion;
 	private String calleSecundaria;
 	private String detalleAdicional;
-	private LocalDate fechaCreadoNegocio;
+	private Date fechaCreadoNegocio;
 	private LocalDateTime fechaRegistro;
+	private LocalDateTime fechaModificacion;
 	private Persona persona;
 	private Categoria categoria;
 	private Sector sector;
@@ -40,16 +42,18 @@ public class Servicio {
 
 	}
 
-	public Servicio(String nombre, String descripcion, String callePrincipal, String numeracion, String calleSecundaria,
-			String detalleAdicional, LocalDate fechaCreadoNegocio, LocalDateTime fechaRegistro, String imagen, int estado) {
+	public Servicio(String nombre, String descripcion, String sitioWeb, String callePrincipal, String numeracion, String calleSecundaria,
+			String detalleAdicional, Date fechaCreadoNegocio, LocalDateTime fechaRegistro, LocalDateTime fechaModificacion, String imagen, int estado) {
 		this.nombre = nombre;
 		this.descripcion = descripcion;
+		this.sitioWeb = sitioWeb;
 		this.callePrincipal = callePrincipal;
 		this.numeracion = numeracion;
 		this.calleSecundaria = calleSecundaria;
 		this.detalleAdicional = detalleAdicional;
 		this.fechaCreadoNegocio = fechaCreadoNegocio;
 		this.fechaRegistro = fechaRegistro;
+		this.fechaModificacion = fechaModificacion;
 		this.imagen = imagen;
 		this.estado = estado;
 	}
@@ -81,6 +85,14 @@ public class Servicio {
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+
+	public String getSitioWeb() {
+		return sitioWeb;
+	}
+
+	public void setSitioWeb(String sitioWeb) {
+		this.sitioWeb = sitioWeb;
 	}
 
 	@Column(name = "calle_principal", nullable = false, length = 50)
@@ -120,15 +132,15 @@ public class Servicio {
 	}
 
 	@Column(name = "fecha_creado_negocio", nullable = true)
-	public LocalDate getFechaCreadoNegocio() {
+	public Date getFechaCreadoNegocio() {
 		return fechaCreadoNegocio;
 	}
 
-	public void setFechaCreadoNegocio(LocalDate fechaCreadoNegocio) {
+	public void setFechaCreadoNegocio(Date fechaCreadoNegocio) {
 		this.fechaCreadoNegocio = fechaCreadoNegocio;
 	}
 
-	@Column(name = "fecha_registro", nullable = false)
+	@Column(name = "fecha_registro", nullable = true)
 	public LocalDateTime getFechaRegistro() {
 		return fechaRegistro;
 	}
@@ -167,6 +179,7 @@ public class Servicio {
 		this.sector = sector;
 	}
 
+	@Column(name = "imagen")
 	public String getImagen() {
 		return imagen;
 	}
@@ -175,12 +188,22 @@ public class Servicio {
 		this.imagen = imagen;
 	}
 
+	@Column(name = "estado")
 	public int getEstado() {
 		return estado;
 	}
 
 	public void setEstado(int estado) {
 		this.estado = estado;
+	}
+
+	@Column(name = "fecha_modificacion")
+	public LocalDateTime getFechaModificacion() {
+		return fechaModificacion;
+	}
+
+	public void setFechaModificacion(LocalDateTime fechaModificacion) {
+		this.fechaModificacion = fechaModificacion;
 	}
 
 }
