@@ -1,1 +1,1 @@
-web: java -DServer.port=$PORT $JAVA_OPTS -jar target/sanar-services.jar
+web: java -DServer.port=$PORT $JAVA_OPTS -jar target/sanar-services.war
