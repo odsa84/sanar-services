@@ -84,16 +84,7 @@
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-war-plugin</artifactId>
-				<configuration>
-                  <archive>
-                    <manifest>
-                    <!-- give full qualified name of your main class-->
-                      <mainClass>com.odsaproject.sanarservices.SanarServicesApplication</mainClass>
-
-                    </manifest>
-                  </archive>
-                </configuration>
+				<artifactId>maven-war-plugin</artifactId>				
 			</plugin>
 		</plugins>
 	</build>
